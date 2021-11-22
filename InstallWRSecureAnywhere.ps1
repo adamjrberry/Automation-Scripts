@@ -17,8 +17,17 @@ param (
 [string] $SubscribedtoPCP
 )
 
-if ( 'true' -eq $SubscribedtoPCP )
+
+if ( '' -eq $WRKeycode )
 {
+    Write-Host "There is no Webroot Keycode. Exiting Script"
+    exit
+}
+    
+
+else {
+   if ( 'true' -eq $SubscribedtoPCP )
+    {
 
         
         if (Get-Service "WRSVC" -ErrorAction SilentlyContinue)
@@ -32,7 +41,9 @@ if ( 'true' -eq $SubscribedtoPCP )
         Write-Host "Installed Successfully."
         }
 
-}
-else {
-Write-Host "This device does not belong to a site/client that has subscribed to PC Protect"
+    }
+    else {
+    Write-Host "This device does not belong to a site/client that has subscribed to PC Protect"
+    } 
+    
 }
